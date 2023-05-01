@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        System.out.println("Welcome");
         System.out.println("Please input disc amount / Lütfen disk adedini giriniz:");
         Scanner input = new Scanner(System.in);
         int disc_amount=input.nextInt();
