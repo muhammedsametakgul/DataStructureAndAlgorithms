@@ -3,73 +3,119 @@ package com.company.circlelinkedlist;
 public class CircleLinkedList {
     private Node head;
     private Node tail;
+    private int size;
 
-    public CircleLinkedList() {
-        this.head = null;
-        this.tail = null;
+    private class Node {
+        private int data;
+        private com.company.hafta2.CircleLinkedList.Node next;
+
+        public Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
     }
 
-    public void insert(int val) {
-        Node node = new Node(val);
-        if (head == null) {
-            head = node;
-            tail = node;
+    public void insertFirst(int value){
+       Node node = new Node(value);
+        if(head== null){
+            head=node;
+            tail=node;
+            size++;
+        }else{
+            node.next=head;
+            head=node;
+            tail.next=head;
+            size++;
+        }
+    }
+    public void insertLast(int value){
+        Node node = new Node(value);
+        if(head == null){
+            insertFirst(value);
+        }else{
+            tail.next=node;
+            tail=node;
+            node.next=head;
+            size++;
+        }
+    }
+
+    public void insertAtIndex(int index,int value){
+        Node node = new Node(value);
+        if(index==0){
+            insertFirst(value);
             return;
         }
+        else if(index==size-1){
+            insertLast(value);
+            return;
+        }else{
+            temp=head;
+            for (int i = 0; i < index - 1; i++) {
+                temp = temp.next;
+            }
+            node.next=temp.next;
+            temp.next=node;
+            size++;
 
-        tail.next = node;
-        node.next = head;
-        tail = node;
+        }
+    }
+
+    public void deleteFirst(){
+        if(head == null){
+            System.out.println("Liste boş");
+            return;
+        }else{
+            tail.next=head.next;
+            head=head.next;
+            size--;
+        }
+    }
+    public void deleteLast(){
+        if(tail==null){
+            System.out.println("Liste boş");
+            return;
+        }else{
+            Node temp = head;
+            while(temp.next!=tail){
+                temp=temp.next;
+            }
+            temp.next=head;
+            tail=temp;
+            size--;
+        }
+    }
+    public void deleteAtIndex(int index){
+        if(index==0){
+            deleteFirst();
+            return;
+        }else if(index==size-1){
+            deleteLast();
+            return;
+        }
+        else{
+            Node temp=head;
+            for(int i=0;i<index-1;i++){
+                temp=temp.next;
+            }
+            temp.next=temp.next.next;
+            size--;
+
+        }
     }
 
     public void display() {
-        Node node = head;
-        if (head != null) {
-            do {
-                System.out.print(node.val + " -> ");
-                if (node.next != null) {
-                    node = node.next;
-                }
-            } while (node != head);
-        }
-        System.out.println("HEAD");
-    }
-
-    public void delete(int val) {
-        Node node = head;
-        if (node == null) {
+        if (head == null) {
+            System.out.println("The list is empty.");
             return;
         }
 
-        if (head == tail){
-            head = null;
-            tail = null;
-            return;
-        }
-
-        if (node.val == val) {
-            head = head.next;
-            tail.next = head;
-            return;
-        }
-
+        Node current = head;
+        System.out.print("List: ");
         do {
-            Node n = node.next;
-            if (n.val == val) {
-                node.next = n.next;
-                break;
-            }
-            node = node.next;
-        } while (node != head);
-
-    }
-
-    private class Node {
-        int val;
-        Node next;
-
-        public Node(int val) {
-            this.val = val;
-        }
+            System.out.print(current.data + " ");
+            current = current.next;
+        } while (current != head);
+        System.out.println();
     }
 }
