@@ -102,4 +102,54 @@ public class Convert {
             return 3;
         return 0;
     }
+
+    public static String convertToPostfix(String infix) {
+        StringBuilder postfix = new StringBuilder();
+        Stack<Character> stack = new Stack<>();
+
+        for (char c : infix.toCharArray()) {
+            if (Character.isLetterOrDigit(c)) {
+                postfix.append(c);
+            } else if (c == '(') {
+                stack.push(c);
+            } else if (c == ')') {
+                while (!stack.isEmpty() && stack.peek() != '(') {
+                    postfix.append(stack.pop());
+                }
+                if (!stack.isEmpty() && stack.peek() == '(') {
+                    stack.pop();
+                }
+            } else {
+                while (!stack.isEmpty() && getPrecedence(c) <= getPrecedence(stack.peek())) {
+                    postfix.append(stack.pop());
+                }
+                stack.push(c);
+            }
+        }
+
+        while (!stack.isEmpty()) {
+            if (stack.peek() == '(') {
+                stack.pop();
+            } else {
+                postfix.append(stack.pop());
+            }
+        }
+
+        return postfix.toString();
+    }
+
+    private static int getPrecedence(char operator) {
+        switch (operator) {
+            case '+':
+            case '-':
+                return 1;
+            case '*':
+            case '/':
+                return 2;
+            case '^':
+                return 3;
+        }
+        return -1; 
+    }
+
 }
