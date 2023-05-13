@@ -149,7 +149,7 @@ public class Convert {
             case '^':
                 return 3;
         }
-        return -1; 
+        return -1;
     }
 
 }
