@@ -16,5 +16,15 @@ public class Main {
 
 
         System.out.println("******************************************************************");
+
+        int[] array2 = {5, 2, 8, 12, 1, 6, 3, 9};
+
+        System.out.println("Array before sorting:");
+        SelectionSort.printArray(array2);
+
+        SelectionSort.selectionSort(array2);
+
+        System.out.println("Array after sorting:");
+        SelectionSort.printArray(array2);
     }
 }
