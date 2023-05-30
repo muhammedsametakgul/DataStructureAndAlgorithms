@@ -26,5 +26,15 @@ public class Main {
 
         System.out.println("Array after sorting:");
         SelectionSort.printArray(array2);
+
+        System.out.println("************************************************************************");
+        int[] arr = {5, 9, 1, 3, 8, 4, 7, 2, 6};
+        System.out.println("Original array:");
+        QuickSort.printArray(arr);
+
+        QuickSort.quickSort(arr, 0, arr.length - 1);
+
+        System.out.println("Sorted array:");
+        QuickSort.printArray(arr);
     }
 }
