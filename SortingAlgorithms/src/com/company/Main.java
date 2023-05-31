@@ -36,5 +36,15 @@ public class Main {
 
         System.out.println("Sorted array:");
         QuickSort.printArray(arr);
+
+        System.out.println("*************************************************************************");
+        int[] array3 = { 9, 5, 1, 4, 3 };
+        System.out.println("Array before sorting:");
+        InsertionSort.printArray(array3);
+
+        InsertionSort.insertionSort(array3);
+
+        System.out.println("Array after sorting:");
+        InsertionSort.printArray(array3);
     }
 }
