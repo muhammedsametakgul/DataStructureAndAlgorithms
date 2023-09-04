@@ -1,27 +1,15 @@
 package com.company;
 
 public class BubbleSort {
-    public static void bubbleSort(int x[]){
-        int n = x.length;
-        //Control if swapped , if it doesn't , it means that the array is already sorted
-        boolean swapped;
-
-        for (int i = 0; i < n - 1; i++) {
-            swapped = false;
-
-            for (int j = 0; j < n - i - 1; j++) {
-                if (x[j] > x[j + 1]) {
-                    // Swap array[j] and array[j + 1]
-                    int temp = x[j];
-                    x[j] = x[j + 1];
-                    x[j + 1] = temp;
-                    swapped = true;
+    public static void bubbleSort(int[] array){
+        int lenghtArray=array.length;
+        for(int i=lenghtArray-1;i>0;i--){
+            for(int j=0;j<i;j++){
+                if(array[j] >array[j+1]){
+                    int temp=array[j];
+                    array[j] = array[j+1];
+                    array[j+1]=temp;
                 }
-            }
-
-            // If no two elements were swapped in the inner loop, the array is already sorted
-            if (!swapped) {
-                break;
             }
         }
     }
