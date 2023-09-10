@@ -1,5 +1,9 @@
 package com.company;
 
+import java.util.Arrays;
+
+import static com.company.MergeSort.merge;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -46,5 +50,11 @@ public class Main {
 
         System.out.println("Array after sorting:");
         InsertionSort.printArray(array3);
+
+        System.out.println("***********************************************************************");
+        int[] array1 = {1,3,7,8};
+        int[] array11 = {2,4,5,6};
+
+        System.out.println( Arrays.toString( merge(array1, array11) ) );
     }
 }
